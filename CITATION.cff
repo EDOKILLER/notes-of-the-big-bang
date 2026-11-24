@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below, and credit the data providers listed in README.md."
+title: "Notes of the Big Bang (Le note del Big Bang): measure the acoustic peaks of the cosmic microwave background from the Planck maps — and hear them"
+authors:
+  - family-names: Battistel
+    given-names: Edoardo
+version: "1.4"
+date-released: 2026-11-20
+license: BSD-3-Clause
+repository-code: "https://github.com/EDOKILLER/notes-of-the-big-bang"
+keywords:
+  - CMB
+  - Planck
+  - power spectrum
+  - acoustic peaks
+  - healpy
+  - cosmology
+  - sonification

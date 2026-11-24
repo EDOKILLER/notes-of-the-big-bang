@@ -1,0 +1,113 @@
+LE NOTE DEL BIG BANG 1.4
+I picchi acustici della radiazione cosmica di fondo, dalle mappe del satellite Planck
+© 2026 Edoardo Battistel
+
+COSA FA
+  La radiazione cosmica di fondo (CMB) è la luce più antica che esista: partì circa
+  380 000 anni dopo il Big Bang, quando l'universo divenne trasparente. Prima di allora
+  era un plasma caldissimo attraversato da onde sonore. Quelle onde hanno lasciato sulla
+  mappa del cielo delle macchie di dimensioni preferite, come le note di uno strumento.
+
+  Il programma:
+  1. scarica (una volta sola) le mappe Planck 2018 della CMB: le due metà della missione
+     (hm1 e hm2) e la maschera comune che copre la Via Lattea e le sorgenti brillanti;
+  2. le porta alla risoluzione scelta e mostra il cielo (proiezione di Mollweide, con e
+     senza maschera, con e senza il dipolo del moto del Sole);
+  3. calcola lo spettro di potenza angolare: quanto sono «forti» le macchie di ogni
+     dimensione. ℓ è il multipolo: una macchia di ℓ corrisponde a circa 180°/ℓ;
+  4. trova da solo i picchi acustici e li confronta con lo spettro ufficiale di Planck e
+     con il modello cosmologico ΛCDM;
+  5. ricava due stime semplici (vedi sotto) e trasforma lo spettro in suono;
+  6. prepara la scheda PDF/PNG (in inglese), la mappa grande, le tabelle CSV e JSON;
+  7. (novità 1.1) stima e toglie la luce residua di sorgenti e galassie lontane, calcola gli
+     errori veri con cieli simulati, trova le valli tra i picchi e mostra il cielo in 9 frequenze.
+
+COME SI USA
+  Scegli la mappa (SMICA senza SZ è la più leggera) e la risoluzione, poi premi
+  «Scarica e calcola». La prima volta scarica circa 0,6 GB dall'archivio Planck dell'ESA
+  (pochi minuti); se il collegamento cade, riprende da IRSA (NASA) dal punto raggiunto.
+  Le volte dopo usa i file sul disco e i calcoli già fatti (cartella «cache»).
+  Con «Mostra» scegli cosa vedere: spettro, mappe, dipolo, note.
+  «Ascolta le note» suona il file WAV: prima «il coro», poi «le note».
+  I pulsanti sotto il grafico servono a ingrandire, spostare e salvare l'immagine.
+  «Dimensione testo» ingrandisce testi, pulsanti e grafico insieme.
+  «Nascondi opzioni» toglie il riquadro delle opzioni e lascia più spazio al grafico
+  (il programma se lo ricorda); «Mostra opzioni» lo rimette. Il riquadro tra registro e
+  grafico si può trascinare.
+
+  Risoluzione:
+    Rapida   Nside 512,  ℓ fino a 1000: si vedono i primi tre picchi (circa un minuto)
+    Normale  Nside 1024, ℓ fino a 2000: sei picchi (consigliata)
+    Completa Nside 2048, ℓ fino a 2500: tutti, ma è lenta e usa qualche GB di memoria
+
+  Cieli simulati per gli errori: il programma crea 20 (o 50) cieli finti con lo spettro del
+  modello ΛCDM, lo stesso fascio, gli stessi pixel, la stessa maschera e lo stesso rumore, e
+  li analizza esattamente come i dati veri. Quanto cambiano i risultati da un cielo all'altro
+  è l'errore vero. A Nside 1024 ogni cielo richiede circa 15 secondi.
+
+  «Mappe in 9 frequenze…»: scarica le mappe di Planck da 30 a 857 GHz (circa 10,8 GB la
+  prima volta, una decina di minuti), le riduce a Nside 256 e cancella i file grandi.
+  Si vede la Via Lattea cambiare: a 30 GHz brilla il sincrotrone (elettroni veloci nel campo
+  magnetico), tra 70 e 217 GHz domina la CMB, da 353 GHz in su la polvere.
+
+COME LEGGERE I RISULTATI
+  Lo spettro (punti blu) è lo spettro INCROCIATO delle due metà della missione: il rumore
+  dello strumento è diverso nelle due metà e si cancella. La linea grigia punteggiata è lo
+  spettro della mappa media, con il rumore: si vede salire ai multipoli alti.
+  I quadratini grigi sono lo spettro ufficiale di Planck, la linea rossa il modello ΛCDM.
+  Il riquadro piccolo mostra la differenza tra i dati e il modello.
+
+  Picchi: posizione ℓ e altezza D_ℓ, con l'errore. Senza simulazioni l'errore viene solo
+  dai punti vicini al picco ed è ottimista; con i cieli simulati è quello vero.
+  Valli (triangoli verdi): i minimi tra i picchi, dove il plasma era fermo nell'oscillazione.
+
+  Sorgenti residue: la mappa SMICA contiene ancora un po' di luce di sorgenti radio e di
+  galassie lontane (polvere calda), che cresce come ℓ² e alza lo spettro ai multipoli alti.
+  Lo spettro ufficiale di Planck è già pulito: dal confronto il programma stima quanta ce
+  n'è (il 20/11 sui dati veri: circa 39 μK² a ℓ = 1000, più un 1,5 % di scala) e la toglie.
+  Serve ℓ fino ad almeno 1500 (Nside 1024 o 2048). La linea blu tratteggiata mostra lo
+  spettro prima della correzione. Dalla 1.2 si toglie solo la luce in più (∝ ℓ²); la piccola
+  differenza di scala con lo spettro ufficiale (circa 2 %) viene solo indicata.
+
+  Geometria: il primo picco cade a ℓ ≈ 220, cioè circa 0,8°. È la dimensione che avrebbe
+  in un universo PIATTO (in uno chiuso come una sfera sembrerebbe più grande, in uno
+  aperto più piccolo). La regola semplice Ω_tot ≈ (ℓ₁ piatto / ℓ₁)² usa come riferimento il
+  primo picco del modello ΛCDM; è solo una stima: la posizione dipende anche dalla
+  materia e dalla costante di Hubble.
+
+  Materia ordinaria: più materia ordinaria (barioni) c'è, più il secondo picco è basso
+  rispetto al primo. Dal rapporto delle altezze, con la formula di Hu e altri (2001) e la
+  materia totale di Planck, si ricava Ω_b h². Sullo spettro ufficiale la formula dà circa
+  0,0235 invece di 0,0224 (qualche % in più): è un'approssimazione.
+
+  Le note: ℓ diventa una frequenza in hertz. Il primo picco a ℓ ≈ 220 suona come un La
+  (220 Hz), il secondo vicino a un Do#, il terzo vicino a un Sol#. Il suono vero del plasma
+  primordiale era circa 50 ottave più grave: un'oscillazione ogni centinaia di migliaia di anni.
+
+  Il dipolo: il Sole si muove a circa 370 km/s rispetto alla CMB. Davanti la radiazione è
+  più calda di 3,4 millesimi di grado, dietro più fredda (effetto Doppler). Planck lo
+  toglie dalle mappe; qui lo si può rimettere per vedere quanto è grande.
+
+DOVE SONO I FILE
+  File Planck:   ~/Scrivania/Astronomia/Planck/        (e la sottocartella cache/)
+  Risultati:     ~/Scrivania/Astronomia/Note_big_bang/<mappa>_n<Nside>_<data>/
+                 note_big_bang_sheet.pdf / .png   scheda in inglese
+                 cmb_map.png                      mappa grande
+                 notes_of_the_big_bang.wav        suono
+                 power_spectrum_binned.csv, power_spectrum_unbinned.csv, results.json
+  9 frequenze:   ~/Scrivania/Astronomia/Note_big_bang/frequenze/planck_nine_frequencies.pdf/.png
+
+DA TERMINALE
+  NoteBigBang --analizza --nside 1024 [--mappa smica-nosz] [--bin 20] [--apo 1.0]
+              [--simulazioni 20] [--senza-togliere-sorgenti] [--senza-suono]
+  NoteBigBang --frequenze [--tieni-file-grandi]   il cielo in 9 frequenze
+  NoteBigBang --scarica             scarica soltanto i file
+  NoteBigBang --diagnostica         prova degli archivi -> diagnostica.txt
+  NoteBigBang --autotest            prove senza rete (cielo simulato e finestra)
+  Lo script note_big_bang.py ha bisogno di healpy: se il Python di sistema non ce l'ha
+  si rilancia da solo con ~/Claude/Astropy/venv_compila/bin/python.
+
+DATI
+  Planck Public Data Release 3 (2018), ESA Planck Legacy Archive e NASA/IPAC IRSA.
+  Spettri: COM_PowerSpect_CMB-TT-binned_R3.01, modello base-plikHM-TTTEEE-lowl-lowE-lensing.
+  Dipolo: Planck 2018 I (3362,08 μK verso l = 264,02°, b = 48,25°).
